@@ -1,0 +1,46 @@
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 240px;
+  margin: 10px 0;
+}
+
+h1 {
+  font-size: 45px;
+}
+
+button {
+  width: 110px;
+  height: 30px;
+  background-color: rgba(50, 50, 50, 0.6);
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+button:hover {
+  background-color: rgba(50, 50, 50, 1);
+}
+
+.header {
+  color: white;
+  height: 40vh;
+  width: 100%;
+  position: relative;
+}
+
+.header-texts {
+  margin-top: 60px;
+  height: 100%;
+  width: 40%;
+  margin-left: 40px;
+}
+
+.header-gradient {
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  bottom: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), black);
+}

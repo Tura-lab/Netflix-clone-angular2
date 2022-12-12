@@ -1,6 +1,13 @@
 <div class="slider-container">
-  <h2>NETFLIX ORIGINALS</h2>
+  <h2>TRENDING</h2>
   <div class="slider">
-    <img *ngFor="let i of [1,2,3,4,4,4,4,4,4,4,4,4,4]" src="../../../assets/images/money-heist-thumbnail.jpg" alt="">
+    <img *ngFor="let movie of trendingMovies" [src]="imageUrl + movie.poster_path" [alt]="movie.original_title">
+  </div>
+</div>
+
+<div class="slider-container">
+  <h2>POPULAR</h2>
+  <div class="slider">
+    <img *ngFor="let movie of popularMovies" [src]="imageUrl + movie.poster_path" [alt]="movie.original_title">
   </div>
 </div>

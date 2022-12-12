@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-hor-slider',
@@ -6,7 +7,20 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./hor-slider.component.css']
 })
 export class HorSliderComponent {
-  @Input() title!: string;
-  @Input() movies!: object[];
+  trendingMovies: any[] = [];
+  popularMovies: any[] = [];
+  newMovies: any[] = [];
+  imageUrl: string = 'https://image.tmdb.org/t/p/w500';
+
+  @Input() trendTime: string = 'week';
+  @Input() showType: string = 'tv';
+
+  constructor(private movieService: MovieService){}
+
+  ngOnInit() {
+    this.movieService.getMovies(this.trendTime, this.showType, 'trending').subscribe(movies => this.trendingMovies = movies.results);
+    this.movieService.getPopular(this.showType).subscribe(movies => this.popularMovies = movies.results);
+  }
+
 
 }

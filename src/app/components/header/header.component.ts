@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  trendingMovies: any[] = [];
+
+  @Input() trendTime: string = 'week';
+  @Input() showType: string = 'tv';
+
+  constructor(private movieService: MovieService){}
+
+  ngOnInit() {}
+
 
 }

@@ -7,7 +7,8 @@ import { MovieService } from 'src/app/services/movie.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  trendingMovies: any[] = [];
+  imageUrl: string = 'https://image.tmdb.org/t/p/w500';
+  movie: any;
 
   @Input() trendTime: string = 'week';
   @Input() showType: string = 'tv';

@@ -15,10 +15,10 @@ export class HorSliderComponent {
   @Input() trendTime: string = 'week';
   @Input() showType: string = 'tv';
 
-  constructor(private movieService: MovieService){}
+  constructor(readonly movieService: MovieService){}
 
   ngOnInit() {
-    this.movieService.getMovies(this.trendTime, this.showType, 'trending').subscribe(movies => this.trendingMovies = movies.results);
+    this.movieService.getMovies(this.trendTime, this.showType, 'trending')
     this.movieService.getPopular(this.showType).subscribe(movies => this.popularMovies = movies.results);
   }
 

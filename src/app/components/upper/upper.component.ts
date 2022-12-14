@@ -10,8 +10,12 @@ export class UpperComponent {
 
   imageUrl: string = 'https://image.tmdb.org/t/p/w1280';
 
-  constructor(readonly movieService: MovieService){}
+  movie:any;
 
+  constructor(readonly movieService: MovieService){
+    console.log(this.movieService.movie)
+    this.movieService.movie.subscribe(movie => this.movie = movie)
 
+  }
 
 }

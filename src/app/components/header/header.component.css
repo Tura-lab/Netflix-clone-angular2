@@ -33,7 +33,7 @@ button:hover {
 .header-texts {
   margin-top: 40px;
   height: 100%;
-  width: 40%;
+  max-width: 60vw;
   margin-left: 40px;
 }
 

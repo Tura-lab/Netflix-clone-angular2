@@ -1,4 +1,4 @@
-<div class="container" [ngStyle]="{'background-image': 'url(' + imageUrl + (movieService.moviePoster | async) + ')' }">
+<div class="container" [ngStyle]="{'background-image': 'url(' + imageUrl + movie.backdrop_path + ')' }">
     <app-nav-bar></app-nav-bar>
     <app-header></app-header>
 </div>

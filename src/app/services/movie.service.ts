@@ -10,7 +10,7 @@ export class MovieService {
   movies = this.allMoviesSubject.asObservable();
 
   singleMovieSubject = new Subject<any>();
-  moviePoster = this.singleMovieSubject.asObservable();
+  movie = this.singleMovieSubject.asObservable();
 
 
   apiKey: string = '90a8fcde0549594bfdbe797e1f5f650d';
@@ -21,8 +21,8 @@ export class MovieService {
   getMovies(trendTime:string, showType:string, whatMovies:string) {
     this.httpClient.get<any>(`${this.baseUrl}/${whatMovies}/${showType}/${trendTime}?api_key=${this.apiKey}`).subscribe(movies => {
       this.allMoviesSubject.next(movies.results);
-      let cur = movies.results[Math.floor(Math.random() * movies.results.length)].backdrop_path;
-      console.log(cur, 123123123)
+
+      let cur = movies.results[Math.floor(Math.random() * movies.results.length)];
 
       this.singleMovieSubject.next(cur)
     });

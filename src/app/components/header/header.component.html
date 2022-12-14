@@ -1,6 +1,6 @@
 <div class="header">
     <div class="header-texts">
-      <h1>Money Heist</h1>
+      <h1>{{ movie.original_title || movie.original_name }}</h1>
 
       <div class="header-buttons">
         <button>Play</button>
@@ -8,10 +8,7 @@
       </div>
 
       <h5>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima beatae
-        dolorem sunt, voluptatum ab velit iure adipisci exercitationem quae aliquid
-        ex laudantium voluptates, excepturi fugit blanditiis fugiat quo tenetur
-        recusandae!
+        {{ movie.overview }}
       </h5>
     </div>
     <div class="header-gradient"></div>

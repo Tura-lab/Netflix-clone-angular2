@@ -15,7 +15,6 @@ export class HeaderComponent {
 
   constructor(private movieService: MovieService){
     this.movieService.movie.subscribe(movie => {
-      console.log(movie)
       this.movie = movie});
   }
 

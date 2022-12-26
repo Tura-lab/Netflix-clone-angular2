@@ -28,6 +28,8 @@ export class GenreComponent {
       this.genre = genre;
       this.page = 1;
       this.movieService.getMoviesByGenre(genre, this.page).subscribe(movies => this.movies = movies.results);
+      this.page += 1
+      this.movieService.getMoviesByGenre(genre, this.page).subscribe(movies => this.movies.push(...movies.results));
     })
   }
 

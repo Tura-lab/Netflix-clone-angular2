@@ -13,3 +13,9 @@
 .slider::-webkit-scrollbar{
   display: none;
 }
+
+.progress-spinner {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}

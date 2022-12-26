@@ -12,12 +12,18 @@ img:hover {
 .menu {
   display: flex;
   align-items: center;
-  height: 20px;
+  height: 25px;
+  width: 100px;
+  color: white;
 }
 
 .menu-button {
   display: flex;
   height: max-content;
+  background-color: rgba(0, 0, 0, .4);
+  font-size: 24px;
+  padding: 3px;
+  border-radius: 3px;
 }
 
 

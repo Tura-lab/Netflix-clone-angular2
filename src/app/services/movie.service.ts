@@ -9,6 +9,9 @@ import { Movie } from 'src/movie';
 })
 
 export class MovieService {
+  isLoading = new BehaviorSubject<boolean>(false);
+  isLoadingObs = this.isLoading.asObservable();
+
   genres = new Map()
 
   m: Movie;
@@ -35,13 +38,6 @@ export class MovieService {
   baseUrl: string = 'https://api.themoviedb.org/3';
 
   constructor(private httpClient: HttpClient) {
-        // ['Action' : 28],
-    // ['Adventure' :12],
-    // ,
-    // ,
-    // ,
-    // ,
-
     this.genres.set('Action', 28);
     this.genres.set('Western' , 37);
     this.genres.set('War' , 10752);
@@ -61,19 +57,19 @@ export class MovieService {
     this.genres.set('Crime' , 80);
     this.genres.set('Documentary' , 99);
   }
-  // https://api.themoviedb.org/3/movie/715931/videos?api_key=90a8fcde0549594bfdbe797e1f5f650d
 
   getMoviesByGenre(genre:string, page: number): Observable<any> {
     let url = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apiKey}&with_genres=${this.genres.get(genre)}&page=${page}`;
-    console.log(url)
 
     return this.httpClient.get<Movie[]>(url);
   }
 
+  toggleLoading(val: boolean) {
+    this.isLoading.next(val);
+  }
 
   getSelectedMovie(movie: any) {
     this.selectedMovieSubject.next(movie);
-    console.log(movie)
   }
 
   toggleSelectedMovieType(newType:string) {
@@ -87,14 +83,16 @@ export class MovieService {
   }
 
   getTrailer(showType:string, id:number) {
+    this.isLoading.next(true);
+
     this.httpClient.get<any>(this.baseUrl + `/${showType}/${id}/videos` + '?api_key=' + this.apiKey).subscribe(t => {
-      console.log(this.baseUrl + `/${showType}/${id}/videos` + '?api_key=' + this.apiKey)
-      console.log(t.results,34234)
       this.trailerSubject.next(t);
+      this.isLoading.next(false);
     })
   }
 
   getTrending(): Observable<any> {
+    this.isLoading.next(true)
     const res = this.httpClient.get<any>(this.baseUrl + endPoints.TRENDING + '?api_key=' + this.apiKey)
 
     res.subscribe(movies => {
@@ -103,6 +101,7 @@ export class MovieService {
       let cur = movies.results[Math.floor(Math.random() * movies.results.length)];
 
       this.singleMovieSubject.next(cur)
+      this.isLoading.next(false)
     });
 
     return res;

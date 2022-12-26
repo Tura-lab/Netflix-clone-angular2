@@ -1,7 +1,38 @@
 <div class="slider-container">
   <h2>{{ title }}</h2>
-  <app-trailer class="trailer" *ngIf="movieIsSelected && title === selectedType"></app-trailer>
+  <!-- <p *ngIf="movieService.isLoadingObs | async">Loaading...</p> -->
+  <ngx-skeleton-loader
+    *ngIf="(movieService.isLoadingObs | async) && title === selectedType"
+    count="14"
+    appearance="circle"
+    [theme]="{
+      'border-radius': '3px',
+      height: '200px',
+      width: '100%',
+      'background-color': 'grey'
+    }"
+  ></ngx-skeleton-loader>
+  <app-trailer
+    class="trailer"
+    *ngIf="movieIsSelected && title === selectedType"
+  ></app-trailer>
   <div class="slider">
-    <app-movie *ngFor="let movie of movies" [movie]="movie" (movieClicked)="handleClick($event)"></app-movie>
+    <app-movie
+      [height]="'190px'"
+      *ngFor="let movie of movies"
+      [movie]="movie"
+      (movieClicked)="handleClick($event)"
+    ></app-movie>
+    <ngx-skeleton-loader
+      *ngIf="movieService.isLoadingObs | async"
+      count="1"
+      appearance="circle"
+      [theme]="{
+        'border-radius': '3px',
+        height: '200px',
+        width: '100%',
+        'background-color': 'grey'
+      }"
+    ></ngx-skeleton-loader>
   </div>
 </div>

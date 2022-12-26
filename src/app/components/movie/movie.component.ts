@@ -8,6 +8,9 @@ import { Movie } from 'src/movie';
 })
 export class MovieComponent {
   @Input() movie: Movie;
+  @Input() height: string;
+  @Input() width: string;
+
   @Output() movieClicked = new EventEmitter<Movie>;
 
   imageUrl: string = 'https://image.tmdb.org/t/p/w500';

@@ -19,24 +19,35 @@ export class GenreComponent {
 
   subs: Subscription[];
 
-  constructor(private movieService: MovieService, private route: ActivatedRoute) {}
+  constructor(readonly movieService: MovieService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
+      this.movieService.isLoading.next(true);
       let genre = params['genre'];
       this.title = genre;
       this.genre = genre;
       this.page = 1;
-      this.movieService.getMoviesByGenre(genre, this.page).subscribe(movies => this.movies = movies.results);
+      this.movieService.getMoviesByGenre(genre, this.page).subscribe(movies => {
+        this.movies = movies.results;
+        this.movieService.isLoading.next(false);
+      });
       this.page += 1
-      this.movieService.getMoviesByGenre(genre, this.page).subscribe(movies => this.movies.push(...movies.results));
+      this.movieService.isLoading.next(true);
+      this.movieService.getMoviesByGenre(genre, this.page).subscribe(movies => {
+        this.movies.push(...movies.results);
+        this.movieService.isLoading.next(false);
+      });
     })
   }
 
   onScroll () {
+    this.movieService.isLoading.next(true);
     this.page += 1
-    console.log(this.page)
-    this.movieService.getMoviesByGenre(this.genre, this.page).subscribe(movies => this.movies.push(...movies.results));
+    this.movieService.getMoviesByGenre(this.genre, this.page).subscribe(movies => {
+      this.movies.push(...movies.results)
+      this.movieService.isLoading.next(false);
+    });
   }
 
 }

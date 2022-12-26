@@ -1,6 +1,5 @@
 img {
   margin: 0 4px;
-  height: 190px;
   transition: transform 300ms;
   cursor: pointer;
 }

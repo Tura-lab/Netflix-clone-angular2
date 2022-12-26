@@ -2,8 +2,22 @@
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 img:hover {
     cursor: pointer;
 }
+
+.menu {
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+
+.menu-button {
+  display: flex;
+  height: max-content;
+}
+
+

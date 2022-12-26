@@ -16,7 +16,7 @@ export class HorSliderComponent {
   selectedType: string;
 
   subs: Subscription[] = [];
-  imageUrl: string = 'https://image.tmdb.org/t/p/w500';
+
 
   @Input() movies: Movie[];
   @Input() title: string;

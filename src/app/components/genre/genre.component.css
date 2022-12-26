@@ -1,0 +1,15 @@
+.slider-container {
+  color: white;
+  margin-left: 20px;
+}
+
+.slider {
+  margin: 10px 0 10px 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.slider::-webkit-scrollbar{
+  display: none;
+}

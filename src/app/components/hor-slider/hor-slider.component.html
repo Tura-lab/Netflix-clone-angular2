@@ -2,11 +2,6 @@
   <h2>{{ title }}</h2>
   <app-trailer class="trailer" *ngIf="movieIsSelected && title === selectedType"></app-trailer>
   <div class="slider">
-    <img
-      *ngFor="let movie of movies"
-      (click) = "handleClick(movie)"
-      [src]="imageUrl + movie.poster_path"
-      [alt]="movie.original_title"
-    />
+    <app-movie *ngFor="let movie of movies" [movie]="movie" (movieClicked)="handleClick($event)"></app-movie>
   </div>
 </div>

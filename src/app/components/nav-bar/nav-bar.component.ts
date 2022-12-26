@@ -10,7 +10,7 @@ export class NavBarComponent {
 
   @ViewChild(MatMenuTrigger) menu: MatMenuTrigger;
 
-  genres = ['Action', 'Adventure', 'Horor', 'Romance', 'Comedy']
+  genres = ['Action', 'Adventure', 'Horror', 'Romance', 'Comedy']
 
   closeMenu(){
     this.menu.closeMenu();

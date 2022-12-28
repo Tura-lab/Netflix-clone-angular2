@@ -1,0 +1,91 @@
+.container {
+  background-color: rgb(175, 175, 175);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.top {
+  display:flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.first {
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 8px;
+  background-color: rgb(175, 175, 175);;
+  color: blue;
+}
+
+.second {
+  background-color: rgb(193, 0, 32);
+  color: white;
+  border: none;
+}
+
+
+img {
+  border-radius: 10px;
+}
+
+.image {
+  height: 100%;
+}
+
+.description {
+  margin-top: 10px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 70%;
+}
+
+.above-button {
+  height: 90%;
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-weight: 500;
+  width: 130px;
+  height: 35px;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 3em;
+}
+
+.rating-row{
+  font-size: 1.2em;
+}
+
+ngb-rating {
+  outline: none;
+  color: yellow;
+  font-size: 1.5em;
+  margin-right: 2px;
+}
+
+.rating-row span:last-child:nth-child(2) {
+  margin-left: 5px;
+}
+
+.rating-row span:nth-child(1) {
+  margin-right: 5px;
+}

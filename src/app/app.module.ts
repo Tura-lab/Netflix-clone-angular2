@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from "@angular/material/dialog";
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,6 +23,9 @@ import { Pipe, PipeTransform} from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { GenreComponent } from './components/genre/genre.component';
 import { MovieComponent } from './components/movie/movie.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -47,7 +51,8 @@ const appRouts: Routes = [
     HomeComponent,
     SafePipe,
     GenreComponent,
-    MovieComponent
+    MovieComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -58,9 +63,12 @@ const appRouts: Routes = [
     MatIconModule,
     InfiniteScrollModule,
     NgxSkeletonLoaderModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    NgbModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MovieDetailComponent]
 })
 export class AppModule { }

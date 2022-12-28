@@ -58,6 +58,12 @@ export class MovieService {
     this.genres.set('Documentary' , 99);
   }
 
+  getMovieById(type: string, id:number): Observable<Movie> {
+    let url = `${this.baseUrl}/${type}/${id}?api_key=${this.apiKey}`;
+
+    return this.httpClient.get<Movie>(url);
+  }
+
   getMoviesByGenre(genre:string, page: number): Observable<any> {
     let url = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apiKey}&with_genres=${this.genres.get(genre)}&page=${page}`;
 

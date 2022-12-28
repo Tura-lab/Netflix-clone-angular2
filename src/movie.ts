@@ -1,3 +1,5 @@
+import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
+
 export interface Movie {
   adult:                 boolean;
   backdrop_path:         string;
@@ -8,7 +10,7 @@ export interface Movie {
   id:                    number;
   imdb_id:               string;
   original_language:     string;
-  original_title:        string;
+  original_title:        string | null;
   overview:              string;
   popularity:            number;
   poster_path:           string | null;
@@ -20,7 +22,7 @@ export interface Movie {
   spoken_languages:      SpokenLanguage[];
   status:                string;
   tagline:               string;
-  title:                 string;
+  title:                 string | null;
   video:                 boolean;
   vote_average:          number;
   vote_count:            number;

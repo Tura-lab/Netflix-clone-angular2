@@ -1,8 +1,14 @@
 .nav-bar {
+    width: 97%;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.nav-bar-container {
+  display: flex;
+  justify-content: center;
 }
 
 img:hover {
@@ -26,4 +32,10 @@ img:hover {
   border-radius: 3px;
 }
 
+.space-holder {
+  justify-self: stretch;
+}
 
+mat-icon {
+  cursor: pointer;
+}

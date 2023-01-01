@@ -1,0 +1,7 @@
+.yellow {
+  color: yellow;
+}
+
+.yellow:hover {
+  cursor:pointer;
+}

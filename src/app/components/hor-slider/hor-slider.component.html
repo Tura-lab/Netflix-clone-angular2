@@ -1,38 +1,23 @@
 <div class="slider-container">
   <h2>{{ title }}</h2>
   <!-- <p *ngIf="movieService.isLoadingObs | async">Loaading...</p> -->
-  <ngx-skeleton-loader
-    *ngIf="(movieService.isLoadingObs | async) && title === selectedType"
-    count="14"
-    appearance="circle"
-    [theme]="{
-      'border-radius': '3px',
-      height: '200px',
-      width: '100%',
-      'background-color': 'grey'
-    }"
-  ></ngx-skeleton-loader>
+  <div *ngIf="(movieService.isLoadingObs | async) && title === selectedType" class="progress-spinner">
+    <p>Loading trailer ...</p>
+    <mat-spinner></mat-spinner>
+  </div>
   <app-trailer
     class="trailer"
-    *ngIf="movieIsSelected && title === selectedType"
+    *ngIf="movieIsSelected && title === selectedType && !(movieService.trailerIsLoadingObs | async)"
   ></app-trailer>
   <div class="slider">
     <app-movie
-      [height]="'190px'"
+      [height]="'300px'"
       *ngFor="let movie of movies"
       [movie]="movie"
       (movieClicked)="handleClick($event)"
     ></app-movie>
-    <ngx-skeleton-loader
-      *ngIf="movieService.isLoadingObs | async"
-      count="1"
-      appearance="circle"
-      [theme]="{
-        'border-radius': '3px',
-        height: '200px',
-        width: '100%',
-        'background-color': 'grey'
-      }"
-    ></ngx-skeleton-loader>
+    <div *ngIf="(movieService.isLoadingObs | async) && title === selectedType" class="progress-spinner">
+      <mat-spinner></mat-spinner>
+    </div>
   </div>
 </div>

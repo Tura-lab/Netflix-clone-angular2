@@ -9,15 +9,19 @@ import { Movie } from 'src/movie';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
-  styleUrls: ['./movie-detail.component.css'],
+  styleUrls: [ '../../../../node_modules/bootstrap/dist/css/bootstrap.css', './movie-detail.component.css' ],
 })
 export class MovieDetailComponent {
   @Input() movieId: number;
   @Input() type: string;
 
-  starRating: number = 4.3;
+  starRating: number;
+  movieRuntime: string;
+
   imageUrl: string = 'https://image.tmdb.org/t/p/w500';
   movie: Movie | null;
+
+  showTrailer: boolean = false;
 
   constructor(
     readonly movieService: MovieService,
@@ -28,7 +32,20 @@ export class MovieDetailComponent {
     this.movieService.isLoading.next(true);
     this.movieService.getMovieById('movie', this.data.id).subscribe((movie) => {
       this.movie = movie;
+      this.starRating = Number((movie.vote_average / 2).toFixed(1));
+      this.movieRuntime = `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}min`
       this.movieService.isLoading.next(false);
     });
+  }
+
+  handleClick(movie: any) {
+    if (this.showTrailer){
+      this.showTrailer = false;
+      return
+    }
+    this.showTrailer = true;
+    this.movieService.getSelectedMovie(movie);
+    this.movieService.getTrailer(movie.first_air_date ? 'tv' : 'movie', movie.id);
+    this.movieService.toggleSelectedMovie(movie);
   }
 }

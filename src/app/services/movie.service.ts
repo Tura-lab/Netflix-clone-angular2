@@ -12,6 +12,9 @@ export class MovieService {
   isLoading = new BehaviorSubject<boolean>(false);
   isLoadingObs = this.isLoading.asObservable();
 
+  trailerIsLoading = new BehaviorSubject<boolean>(false);
+  trailerIsLoadingObs = this.trailerIsLoading.asObservable();
+
   genres = new Map()
 
   m: Movie;
@@ -66,12 +69,9 @@ export class MovieService {
 
   getMoviesByGenre(genre:string, page: number): Observable<any> {
     let url = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apiKey}&with_genres=${this.genres.get(genre)}&page=${page}`;
+    console.log(url)
 
     return this.httpClient.get<Movie[]>(url);
-  }
-
-  toggleLoading(val: boolean) {
-    this.isLoading.next(val);
   }
 
   getSelectedMovie(movie: any) {
@@ -89,11 +89,12 @@ export class MovieService {
   }
 
   getTrailer(showType:string, id:number) {
-    this.isLoading.next(true);
+    this.trailerIsLoading.next(true);
+    console.log('herererereeerer')
 
     this.httpClient.get<any>(this.baseUrl + `/${showType}/${id}/videos` + '?api_key=' + this.apiKey).subscribe(t => {
       this.trailerSubject.next(t);
-      this.isLoading.next(false);
+      this.trailerIsLoading.next(false);
     })
   }
 

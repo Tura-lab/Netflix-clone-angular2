@@ -2,13 +2,15 @@
 <div
   class="slider-container"
   infinite-scroll
-  [infiniteScrollDistance]="2"
+  [infiniteScrollDistance]="0"
+  [infiniteScrollContainer]="'.mat-dialog-container'"
+  [fromRoot]="true"
   (scrolled)="onScroll()"
 >
   <h2>{{ title }}</h2>
   <div class="slider">
     <app-movie *ngFor="let movie of movies" [movie]="movie" [height]="'250px'" (movieClicked)="openDialog($event)"></app-movie>
-    <div *ngIf="movieService.isLoadingObs | async" class="progress-spinner">
+    <div *ngIf="movieService.isLoadingObs | async" class="{{ movies.length ? 'progress-spinner-movie'  : 'progress-spinner-no-movie' }}">
       <mat-spinner></mat-spinner>
     </div>
   </div>

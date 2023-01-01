@@ -1,3 +1,3 @@
 <div *ngIf="trailer" class="trailer">
-  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(trailer)" frameborder="0" width="100%" height="400px"></iframe>
+  <iframe (load)="trailerLoaded()" (error)="trailerLoaded()" [src]="sanitizer.bypassSecurityTrustResourceUrl(trailer)" frameborder="0" width="100%" [height]="trailerHeight" allow="autoplay"></iframe>
 </div>

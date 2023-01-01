@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +11,7 @@ export class NavBarComponent {
 
   @ViewChild(MatMenuTrigger) menu: MatMenuTrigger;
 
-  genres = ['Action', 'Adventure', 'Horror', 'Romance', 'Comedy', 'Documentary', 'Animation']
+  constructor(readonly sidenavService: SidenavService){}
 
   closeMenu(){
     this.menu.closeMenu();
@@ -19,5 +20,4 @@ export class NavBarComponent {
   openMenu() {
     this.menu.openMenu();
   }
-
 }

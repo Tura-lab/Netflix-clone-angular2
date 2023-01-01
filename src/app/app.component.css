@@ -1,1 +1,58 @@
+mat-drawer-container{
+  height: 100%;
+  background-color: black;
+}
 
+mat-drawer {
+  height: 100%;
+  padding: 20px;
+}
+
+mat-drawer-content {
+  overflow-y: scroll;
+}
+
+li, p {
+  cursor: pointer;
+  outline: none;
+  list-style: none;
+  background-color: inherit;
+  font-size: medium;
+}
+
+li {
+  line-height: 25px;
+}
+
+p {
+  padding: 2px;
+}
+
+.active-link {
+  background-color: grey;
+}
+
+li:hover {
+  border-left: 4px green solid;
+}
+
+/* Side nav backdrop color */
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(53, 53, 53, 0.44);
+}
+
+/* width */
+::ng-deep .mat-drawer-inner-container::-webkit-scrollbar {
+  width: 10px;
+  left: -15px;
+}
+
+/* Track */
+::ng-deep .mat-drawer-inner-container::-webkit-scrollbar-thumb {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::ng-deep .mat-drawer-inner-container::-webkit-scrollbar-track {
+  background: #888;
+}

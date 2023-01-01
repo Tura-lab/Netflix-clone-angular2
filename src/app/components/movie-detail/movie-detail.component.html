@@ -2,26 +2,51 @@
   <div *ngIf="movieService.isLoadingObs | async" class="progress-spinner">
     <mat-spinner></mat-spinner>
   </div>
-  <div class="top">
+  <div *ngIf="!(movieService.isLoadingObs | async)" class="top">
     <div class="description">
       <div class="above-button">
-        <h1>Great Film</h1>
+        <h1>{{ movie?.title }}</h1>
         <div class="rating-row">
-          <span><ngb-rating [max]="5" [(rate)]="starRating" [readonly]="true"></ngb-rating> 4.3</span>     |     <span>2h 13min</span>
+          <span
+            ><app-star-rating [starRating]="starRating"></app-star-rating></span
+          ><span class="rating-number">{{ starRating }}</span
+          ><span class="vertical-separator">|</span
+          ><span>{{ movieRuntime }}</span>
         </div>
         <div class="tags">
-          <span>Action</span>
-          <span>Romance</span>
-          <span>Comedy</span>
+          <span *ngFor="let genre of movie?.genres; let i = index">{{
+            genre.name +
+              (i == movie?.genres?.length! - 1
+                ? "."
+                : i == movie?.genres?.length! - 2
+                ? " and "
+                : ", ")
+          }}</span>
         </div>
       </div>
-      <div class="buttons">
-        <a class="first">Watch Trailer</a>
+      <div class="buttons bottom-buttons">
+        <a class="first" (click)="handleClick(movie)">{{ showTrailer ? 'Stop' : 'Watch' }} Trailer</a>
         <button class="second">Watch Full Movie</button>
       </div>
     </div>
     <div class="image">
-      <img [src]="imageUrl + movie?.poster_path" alt="" height="270px">
+      <img [src]="imageUrl + movie?.poster_path" alt="" max-height="300px" />
+    </div>
+  </div>
+  <div
+    *ngIf="movieService.trailerIsLoadingObs | async"
+    class="progress-spinner"
+  >
+    <p>Loading trailer ...</p>
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-trailer *ngIf="showTrailer && !(movieService.trailerIsLoadingObs | async)" class="trailer" trailerHeight="200px"></app-trailer>
+  <div class="bottom" *ngIf="!(movieService.isLoadingObs | async)">
+    <h3>Storyline</h3>
+    <p>{{ movie?.overview }}</p>
+    <div class="buttons">
+      <a><mat-icon>share</mat-icon><span>Share</span> </a>
+      <a><mat-icon>star</mat-icon><span>Rate this</span></a>
     </div>
   </div>
 </div>

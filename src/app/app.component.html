@@ -1,1 +1,25 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="sidenav-container" autosize>
+  <mat-drawer
+    #drawer
+    class="example-sidenav"
+    mode="over"
+    [opened]="sidenavService.drawerStatus"
+    (closedStart)="sidenavService.drawerStatus = false"
+  >
+    <h2>Choose genres</h2>
+    <ul>
+      <li *ngFor="let genre of genres">
+        <p
+          [routerLink]="['/genres', genre]"
+          routerLinkActive="active-link"
+          (click)="sidenavService.drawerStatus = false"
+        >
+          {{ genre }}
+        </p>
+      </li>
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content class="mat-dialog-container">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

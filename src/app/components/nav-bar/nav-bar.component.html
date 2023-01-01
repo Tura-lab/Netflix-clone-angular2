@@ -1,25 +1,8 @@
 <div class="nav-bar-container">
   <div class="nav-bar">
-    <!-- Netflix logo -->
-    <img
-      src="../../../assets/images/Netflix-Logo.svg"
-      alt="Netflix-Logo"
-      width="120px"
-      height="90px"
-    />
-    <!-- Dropdown genre choice -->
-    <div class="menu-container" (mouseenter)="openMenu()">
-      <div class="menu-button" [matMenuTriggerFor]="menu">
-        <div class="menu">
-          <span>Genres</span><mat-icon>arrow_drop_down</mat-icon>
-        </div>
-      </div>
-      <mat-menu #menu="matMenu">
-        <span (mouseleave)="closeMenu()" [ngStyle]="{'border': 'none'}">
-          <button *ngFor="let genre of genres" mat-menu-item [routerLink]="['/genres', genre]">{{ genre }}</button>
-        </span>
-      </mat-menu>
-    </div>
+    <!-- Menu Icon -->
+    <mat-icon (click)="sidenavService.changeDrawerStatus()">menu</mat-icon>
+
     <!-- User avatar -->
     <img
       src="../../../assets/images/profile-avatar.svg"
